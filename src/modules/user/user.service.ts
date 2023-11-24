@@ -12,17 +12,17 @@ const getAllUsersFromDB = async():Promise<User[]>=>{
 };
 
 const getSingleUserFromDB = async(userId: number | string):Promise<User | null>=>{
-  const result = await UserModel.findOne({userId})
-  console.log(userId);
-  
+  const result = await UserModel.findOne({userId})  
   return result;
 };
 
-const updateSingleUser = async (id: string, userData: User) => {
-  // console.log(id)
-  const result = await UserModel.findOneAndUpdate({id}, {$set: userData})
-  console.log(result);
-  
+const updateSingleUser = async (userId: string, userData: User): Promise<User | null> => {
+  const result = await UserModel.findOneAndUpdate({userId}, {$set: userData})
+  return result;
+};
+
+const deleteSingleUser = async (userId: string): Promise<User | null> => {
+  const result = await UserModel.findByIdAndDelete(userId)
   return result;
 };
 
@@ -31,4 +31,5 @@ export const userServices = {
     getAllUsersFromDB,
     getSingleUserFromDB,
     updateSingleUser,
+    deleteSingleUser
 };
