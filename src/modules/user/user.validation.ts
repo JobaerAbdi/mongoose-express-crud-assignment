@@ -1,31 +1,31 @@
 import { z } from "zod";
 
-const userOrderSchema = z.object({
-  productName: z.string(),
-  price: z.number(),
-  quantity: z.number(),
+const userOrderValidationSchema = z.object({
+  productName: z.string().min(1),
+  price: z.number().min(1),
+  quantity: z.number().min(1),
 });
 
-const userSchema = z.object({
-  userId: z.number().min(1, { message: 'ID must be greater than or equal to 1'}),
-  username: z.string().min(1, { message: 'Username is required' }),
-  password: z.string().min(1, { message: 'Password is required' }),
+const userValidationSchema = z.object({
+  userId: z.number(),
+  username: z.string(),
+  password: z.string().min(1).max(20),
   fullName: z.object({
-    firstName: z.string().min(1, { message: 'FirstName is required' }),
-    lastName: z.string().min(1, { message: 'LastName is required' }),
+    firstName: z.string().min(1).max(20),
+    lastName: z.string().min(1),
   }),
-  age: z.number().min(1, { message: 'Age is required' }),
-  email: z.string().email({ message: 'Invalid email format' }),
+  age: z.number().min(1),
+  email: z.string().email(),
   isActive: z.boolean(),
-  hobbies: z.array(z.string()).min(1, { message: 'Hobbies is required' }),
+  hobbies: z.array(z.string()).min(1),
   address: z.object({
-    street: z.string().min(1, { message: 'Street is required' }),
-    city: z.string().min(1, { message: 'City is required' }),
-    country: z.string().min(1, { message: 'Country is required' }),
+    street: z.string().min(1),
+    city: z.string().min(1),
+    country: z.string().min(1),
   }),
-  orders: z.array(userOrderSchema).min(1, { message: 'Orders is required' }),
+  orders: z.array(userOrderValidationSchema).min(1),
 });
 
-export const UserZodSchema = userSchema;
+export default userValidationSchema;
 
 
