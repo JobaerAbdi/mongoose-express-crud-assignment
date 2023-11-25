@@ -1,5 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { User, UserOrder, UserStaticModel } from './user.interface';
+import bcrypt from 'bcrypt';
+import config from '../../config';
 
 const userOrderSchema = new Schema<UserOrder>({
   productName: {
@@ -74,6 +76,17 @@ const userSchema = new Schema<User, UserStaticModel>({
   orders: {
     type: [userOrderSchema],
   },
+});
+
+userSchema.pre('save', async function (next) {
+  // console.log(this, 'pre hook : we will save  data');
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
+  const user = this; 
+  user.password = await bcrypt.hash(
+    user.password,
+    Number(config.bcrypt_salt_rounds),
+  );
+  next();
 });
 
 
