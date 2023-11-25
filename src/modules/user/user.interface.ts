@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+import { Model } from "mongoose";
+
 export type UserOrder = {
     productName: string;
     price: number;
@@ -24,3 +27,8 @@ export type User = {
   orders: UserOrder[];
 };
 
+
+ export interface UserStaticModel extends Model<User> {
+ 
+  isUserExists(userId: number ): Promise<User | null>
+}
