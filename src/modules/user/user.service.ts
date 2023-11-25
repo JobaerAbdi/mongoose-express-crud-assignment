@@ -36,7 +36,7 @@ const updateSingleUser = async (
   const result = await UserModel.findOneAndUpdate(
     { userId },
     { $set: userData },
-    { password: 0}
+    { password: 0},
   );
   return result;
 };
