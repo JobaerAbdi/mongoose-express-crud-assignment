@@ -25,7 +25,7 @@ const getAllUsersFromDB = async (): Promise<User[]> => {
 const getSingleUserFromDB = async (
   userId: number | string,
 ): Promise<User | null> => {
-  const result = await UserModel.findOne({ userId });
+  const result = await UserModel.findOne({ userId }, { password: 0});
   return result;
 };
 
@@ -36,6 +36,7 @@ const updateSingleUser = async (
   const result = await UserModel.findOneAndUpdate(
     { userId },
     { $set: userData },
+    { password: 0}
   );
   return result;
 };

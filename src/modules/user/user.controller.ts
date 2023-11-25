@@ -115,7 +115,7 @@ const insertOrderToUserCollection = async (req: Request, res: Response) => {
     const userData = req.body;
     console.log(userId, userData);
     
-    await userServices.insertOrderToUserCollection(Number(userId), userData);
+    await userServices.insertOrderToUserCollection(Number(userId), userData); 
     res.status(200).json({
       status: 'success',
       message: 'Order created successfully!',
