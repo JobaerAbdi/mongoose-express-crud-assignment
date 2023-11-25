@@ -39,16 +39,14 @@
 2. The server will be running at `http://localhost:5000`.
 
 ## API Endpoints
-- **POST /users:** Create a new user.
-
 - **POST(/api/users:** Create User Into DB).
 - **GET(/api/users:** Get All User From DB).
 - **GET(/api/users/userId:** Get Single User From DB).
 - **PUT(/api/users/userId:** Update Single User).
 - **DELETE(/api/users/userId:** Delete Single User).
 - **PUT(/api/users/userId/orders** Insert Order inUser)
-- **PUT(/api/users/userId/orders** Get All Orders).
-- **PUT(/api/users/userId/orders/total-price** Get Total Price in Orders).
+- **GET(/api/users/userId/orders** Get All Orders).
+- **GET(/api/users/userId/orders/total-price** Get Total Price in Orders).
 
 
 ## Sample User JSON
