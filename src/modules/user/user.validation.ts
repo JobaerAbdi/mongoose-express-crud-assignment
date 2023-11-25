@@ -9,7 +9,7 @@ const userOrderValidationSchema = z.object({
 const userValidationSchema = z.object({
   userId: z.number(),
   username: z.string(),
-  password: z.string().min(1).max(20),
+  password: z.string().max(20),
   fullName: z.object({
     firstName: z.string().min(1).max(20),
     lastName: z.string().min(1),

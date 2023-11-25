@@ -91,11 +91,11 @@ const updateSingleUser = async (req: Request, res: Response) => {
 const deleteSingleUser = async (req: Request, res: Response) => {
   try {
     const id = req.params.id
-    const result = await userServices.deleteSingleUser(id);
+    await userServices.deleteSingleUser(id);
     res.status(200).json({
       status: 'success',
       message: 'User deleted successfully',
-      data: result,
+      data: null,
     });
   } catch (error) {
     res.status(500).json({
@@ -136,7 +136,6 @@ const insertOrderToUserCollection = async (req: Request, res: Response) => {
 const getAllOrder = async (req: Request, res: Response) => {
   try {
     const {userId} = req.params 
-    console.log(userId);
     const result = await userServices.getAllOrder(Number(userId));
     res.status(200).json({
       status: 'success',
